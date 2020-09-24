@@ -1,0 +1,29 @@
+{
+  "name": "TestProject",
+  "author": "Prohor Zyazyulya",
+  "version": "0.0.1",
+  "scripts": {
+    "compiler": "tsc --build ui/tsconfig.json",
+    "pretest": "npm run compiler",
+    "test": "protractor ui/build/ui/protractor.conf.js",
+    "report": "allure generate --clean ./output/allure-results-chrome-85.0/ -o allure-report && allure open"
+  },
+  "dependencies": {
+    "protractor": "^7.0.0",
+    "@types/jasmine": "^3.5.14",
+    "@types/node": "^14.11.2",
+    "allure-commandline": "^2.13.0",
+    "chromedriver": "^85.0.1",
+    "jasmine": "^3.6.1",
+    "jasmine-allure-reporter": "^1.0.2",
+    "jasmine-data-provider": "^2.2.0",
+    "jasmine-reporters": "^2.3.2",
+    "lodash": "^4.17.20",
+    "nano-equal": "^2.0.2",
+    "node": "^14.12.0",
+    "request": "^2.88.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3",
+    "webdriver-manager": "^12.1.7"
+  }
+}
