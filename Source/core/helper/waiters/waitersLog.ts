@@ -1,6 +1,6 @@
-import {IErrorMessageWaiters} from "./models/errorMessageWaiters.model";
+import {ErrorMessageWaiters} from "./interfaces/errorMessageWaiters";
 
-export const errorMessageWaiters: IErrorMessageWaiters = {
+export const errorMessageWaiters: ErrorMessageWaiters = {
     timeout: "TimeoutError"
 };
 

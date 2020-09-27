@@ -8,7 +8,7 @@ export let config: Config = {
     seleniumAddress: 'http://csl-dauc-test.cislink.moscow:4444/wd/hub',
 
     specs: [
-        "./tests/**/**.spec.js",
+        "./test/**/**.spec.js",
     ],
 
     params: {

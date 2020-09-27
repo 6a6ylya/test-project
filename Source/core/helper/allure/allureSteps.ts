@@ -1,20 +1,26 @@
-import * as _ from 'lodash';
 import {browser, ElementFinder} from "protractor";
-import {expectToDisplayLog, expectToEqualLog, expectToNotEqualLog, expectToPresentLog} from "./allureLog";
+import {
+    expectToContainLog,
+    expectToDisplayLog,
+    expectToEqualLog,
+    expectToNotEqualLog,
+    expectToPresentLog
+} from "./allureLog";
 import {Waiters as wait} from "../waiters/waiters";
 declare let allure: any;
-const nanoEqual = require('nano-equal');
 
-export async function allureStep(stepDefinition: string, method: any): Promise<void> {
+export async function allureStep(stepDefinition: string, method: any, takeScreenShotBoolean: boolean = browser.params.takeScreenShotFromEachAllureStep): Promise<void> {
     await allure.createStep(stepDefinition, async () => {
         try {
             await method();
-            if(browser.params.takeScreenShotFromEachAllureStep)  {
+            if(takeScreenShotBoolean) {
                 await takeScreenShot();
             }
         }
         catch (error) {
-            await takeScreenShot();
+            if(takeScreenShotBoolean) {
+                await takeScreenShot();
+            }
             throw error;
         }
     })();
@@ -175,6 +181,23 @@ export async function expectToCompare(actualResult: string | number, expectedRes
             await takeScreenShot();
             await expect(actualResult).not.toEqual(expectedResult);
             throw expectToEqualLog.error(expectedResult, actualResult, description);
+        }
+    })();
+}
+
+/**
+ * Проверка содержится ли переданное значение в ожидаемом.
+ *
+ * @param {any} actualResult актуальные данные.
+ * @param {any} expectedResult ожидаемые данные.
+ * @param {string} description описание (название текста в элементе и т.д.).
+ */
+export async function expectToContains(actualResult: any, expectedResult: any, description: string): Promise<void> {
+    await allure.createStep(expectToContainLog.compare(expectedResult, actualResult, description), async () => {
+        if (!actualResult.includes(expectedResult)) {
+            await takeScreenShot();
+            await expect(actualResult).not.toContain(expectedResult);
+            throw expectToContainLog.error(expectedResult, actualResult, description);
         }
     })();
 }

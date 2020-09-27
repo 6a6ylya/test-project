@@ -44,3 +44,12 @@ export const expectToEqualLog: any = {
         return `Ошибка: ${description}. Ожидаемый результат "${expectedResult}" не совпадает с фактическим "${value}".`;
     }
 };
+
+export const expectToContainLog: any = {
+    compare: (expectedResult: any, value: any, description: string): string => {
+        return `Проверка: ${description}. Значение "${value}" содержит в себе "${expectedResult}".`;
+    },
+    error: (expectedResult: any, value: any, description: string): string => {
+        return `Ошибка: ${description}. Значение "${value}" не содержит в себе "${expectedResult}".`;
+    }
+};

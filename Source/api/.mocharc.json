@@ -1,0 +1,11 @@
+{
+  "diff": true,
+  "extension": ["ts"],
+  "require": "ts-node/register",
+  "package": "./package.json",
+  "reporter": "mocha-multi-reporters",
+  "reporter-options": "configFile=api/reporterConfig.json",
+  "slow": 3000,
+  "timeout": 10000,
+  "spec": "api/test/**/*.spec.ts"
+}

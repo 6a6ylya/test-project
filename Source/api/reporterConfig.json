@@ -1,0 +1,11 @@
+{
+  "reporterEnabled": "spec,mocha-allure-reporter,mocha-junit-reporter",
+  "mochaJunitReporterReporterOptions": {
+    "mochaFile": "output/api-junit-result/junit-report.xml",
+    "reporterOptions": {
+      "testsuitesTitle": true,
+      "useFullSuiteTitle": true,
+      "suiteTitleSeparatedBy": "."
+    }
+  }
+}
